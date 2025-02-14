@@ -1,0 +1,120 @@
+.thebox {
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        max-width: 280px;
+        margin: 0px;
+    }
+    .css-ypiqx9-MuiDialogContent-root{
+        padding:0px;
+    }
+}
+
+.word {
+    .css-ahj2mt-MuiTypography-root {
+        @extend .styles;
+        margin-top: 8px;
+
+    }
+}
+
+.men-women {
+    font-size: 13px !important;
+    margin-top: -6px;
+}
+
+.radio {
+    margin-top: 0px !important;
+    padding:0px !important;
+    font-size:5px!important;
+}
+
+.styles {
+    font-size: 13px !important;
+    
+}
+.stylesTable {
+    @extend .styles;
+    height: 30px; 
+}
+.title{
+    @extend .styles;
+
+    padding: 0px!important;
+    margin-left: 10px!important
+    
+}
+.error {
+    @extend .styles;
+    color: red;
+}
+
+.button {
+    background-color: rgb(126, 0, 181) !important;
+    border-radius: 10px !important;
+    transition: background-color 0.3s;
+    padding: 0px!important;
+}
+
+.chart {
+    color:rgb(0, 0, 0)!important;
+    background-color: rgb(126,0,181)!important;
+    border-radius: 10px!important;
+    &:hover {
+        background-color: #000000 !important;
+        color:rgb(234, 0, 255)!important;
+    }
+}
+
+.snap {
+    font-size: 13px !important;
+}
+
+.password {
+    
+    .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+        color: black;
+        @extend .styles;
+        height: 30px;
+    }
+}
+
+.go {
+    margin-top:10px!important;
+   
+    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+        @extend .styles;
+        color: rgb(255, 255, 255);
+        text-transform: none;
+        padding:3px;
+    }
+
+    &:hover {
+        background-color: #000000 !important;
+
+        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+            color: rgb(234, 0, 255);
+        }
+    }
+
+}
+
+.add {
+    @extend .button;
+    border-radius: 15px !important;
+
+    .css-i4bv87-MuiSvgIcon-root {
+        font-size: 30px;
+    }
+
+    &:hover {
+        background-color: #000000 !important;
+
+        .css-i4bv87-MuiSvgIcon-root {
+            color: rgb(234, 0, 255)
+        }
+    }
+}
+
+.table {
+    width: 95em !important;
+    table-layout: fixed;
+}
