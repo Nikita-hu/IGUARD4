@@ -6,10 +6,10 @@ import { validationSchema } from '../validation/Validation'
 import useApi from '../hook/useApi';
 import { useEditMutation, useCreateMutation, useDeleteMutation } from '../hook/useApi'
 import Dial from '../Components/Dial'
-import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
-import { IconButton } from '@mui/material';
+import Header from './Header.jsx'
+
 const OnePage = () => {
-    const navigate = useNavigate()
+
     const [open, setOpen] = useState(false);
     const { data, error, isLoading } = useApi();
     const [editRowId, setEditRowId] = useState();
@@ -18,9 +18,11 @@ const OnePage = () => {
     const { register, reset, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(validationSchema)
     });
+
     const edit = useEditMutation()
     const deleted = useDeleteMutation()
     const create = useCreateMutation()
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -80,7 +82,7 @@ const OnePage = () => {
 
     return (
         <div>
-            <IconButton className="chart" onClick={() => navigate('/Random')} >Графики</IconButton>
+            <Header />
             <Dial open={open} handleClose={handleClose} handleSubmit={handleSubmit} onSubmit={onSubmit}
                 register={register} errors={errors} reset={reset} checked={checked} setChecked={setChecked}
                 editRowId={editRowId} errorStyle={errorStyle} />

@@ -15,19 +15,19 @@ const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, res
             <form onSubmit={handleSubmit(onSubmit)}>
                 {
                     editRowId
-                        ? <DialogTitle className='title'>Редактировать форму  <IconButton sx={{ color: 'text.secondary', marginLeft: '70px' }} onClick={handleClose}><CancelIcon sx={{ fontSize: '13px' }} /></IconButton></DialogTitle>
+                        ? <DialogTitle className='title'>Редактировать форму  <IconButton sx={{ color: 'text.secondary', marginLeft: '70px' }} onClick={handleClose}><CancelIcon sx={{ fontSize: '13px', color: 'white' }} /></IconButton></DialogTitle>
 
-                        : <DialogTitle className='title'>Заполните форму   <IconButton sx={{ color: 'text.secondary', marginLeft: '70px' }} onClick={handleClose}><CancelIcon sx={{ fontSize: '13px' }} /></IconButton></DialogTitle>
+                        : <DialogTitle className='title'>Заполните форму   <IconButton sx={{ color: 'text.secondary', marginLeft: '70px' }} onClick={handleClose}><CancelIcon sx={{ fontSize: '13px', color: 'white' }} /></IconButton></DialogTitle>
                 }
                 <DialogContent>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                         <FormControl key='name'  >
                             <FormHelperText className='styles'>Name</FormHelperText>
                             <OutlinedInput
                                 size='small'
                                 placeholder='Enter name'
                                 {...register('name')}
-                                className='styles'
+                                className='enter-styles'
                                 sx={errorStyle(errors.name)}
                             />
                             {errors.name && <span className='error'>{errors.name.message}</span>}
@@ -39,7 +39,7 @@ const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, res
                                 size='small'
                                 placeholder='Enter email'
                                 {...register('email')}
-                                className='styles'
+                                className='enter-styles'
                                 sx={errorStyle(errors.email)}
                             />
                             {errors.email && <span className='error'>{errors.email.message}</span>}
@@ -51,7 +51,7 @@ const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, res
                                 size='small'
                                 placeholder='Enter login'
                                 {...register('login')}
-                                className='styles'
+                                className='enter-styles'
                                 sx={errorStyle(errors.login)}
                             />
                             {errors.login && <span className='error'>{errors.login.message}</span>}
@@ -64,7 +64,7 @@ const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, res
                                 type="password"
                                 placeholder='Enter password'
                                 {...register('password')}
-                                className='styles'
+                                className='enter-styles'
                                 sx={errorStyle(errors.password)}
                             />
                             {errors.password && <span className='error'>{errors.password.message}</span>}
@@ -76,7 +76,7 @@ const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, res
                                 size='small'
                                 placeholder='Enter dateOfBirth'
                                 {...register('dateOfBirth')}
-                                className='styles'
+                                className='enter-styles'
                                 sx={errorStyle(errors.dateOfBirth)}
                             />
                             {errors.dateOfBirth && <span className='error'>{errors.dateOfBirth.message}</span>}

@@ -2,9 +2,38 @@
     .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
         max-width: 280px;
         margin: 0px;
+        border: 2px solid white;
     }
-    .css-ypiqx9-MuiDialogContent-root{
-        padding:0px;
+
+    .css-ypiqx9-MuiDialogContent-root {
+        padding: 0px;
+    }
+
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        background-color: black;
+        border-color: white;
+        border-width: 2px;
+    }
+}
+
+.toolbar {
+    color: rgb(234, 0, 255);
+    border: 2px solid rgb(234, 0, 255);
+    background-color: black;
+    width: 400px;
+}
+
+.menu {
+    &:hover {
+        background-color: rgb(234, 0, 255) !important;
+        color: rgb(0, 0, 0) !important;
+    }
+}
+
+.back-word {
+    .css-6hp17o-MuiList-root-MuiMenu-list {
+        background-color: #000000;
+        color: rgb(234, 0, 255);
     }
 }
 
@@ -23,53 +52,74 @@
 
 .radio {
     margin-top: 0px !important;
-    padding:0px !important;
-    font-size:5px!important;
+    padding: 0px !important;
+    font-size: 5px !important;
+    color: rgb(255, 255, 255) !important
 }
 
 .styles {
     font-size: 13px !important;
-    
+    color: rgb(255, 255, 255) !important;
 }
-.stylesTable {
-    @extend .styles;
-    height: 30px; 
-}
-.title{
-    @extend .styles;
 
-    padding: 0px!important;
-    margin-left: 10px!important
-    
+.enter-styles {
+    @extend .styles;
+    border: 2px solid white !important;
 }
+
+// .styles-table {
+//     @extend .styles;
+//     height: 30px;
+// }
+
+.title {
+    @extend .styles;
+    padding: 0px !important;
+    margin-left: 10px !important
+}
+
+.chart-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    background-color: #000000;
+}
+
 .error {
     @extend .styles;
-    color: red;
+    color: red !important;
 }
 
 .button {
     background-color: rgb(126, 0, 181) !important;
     border-radius: 10px !important;
     transition: background-color 0.3s;
-    padding: 0px!important;
+    padding: 0px !important;
 }
 
 .chart {
-    color:rgb(0, 0, 0)!important;
-    background-color: rgb(126,0,181)!important;
-    border-radius: 10px!important;
+    text-align: center;
+    color: rgb(0, 0, 0) !important;
+    background-color: rgb(126, 0, 181) !important;
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+
     &:hover {
         background-color: #000000 !important;
-        color:rgb(234, 0, 255)!important;
+        color: rgb(234, 0, 255) !important;
     }
 }
 
 .snap {
     font-size: 13px !important;
+    color: rgb(255, 255, 255)
 }
 
 .password {
-    
     .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
         color: black;
         @extend .styles;
@@ -78,20 +128,20 @@
 }
 
 .go {
-    margin-top:10px!important;
-   
+    margin-top: 10px !important;
+    
     .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
         @extend .styles;
         color: rgb(255, 255, 255);
         text-transform: none;
-        padding:3px;
+        padding: 3px;
     }
 
     &:hover {
         background-color: #000000 !important;
 
         .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-            color: rgb(234, 0, 255);
+            color: rgb(234, 0, 255) !important;
         }
     }
 
@@ -100,9 +150,11 @@
 .add {
     @extend .button;
     border-radius: 15px !important;
+    margin-top: 10px !important;
 
     .css-i4bv87-MuiSvgIcon-root {
         font-size: 30px;
+
     }
 
     &:hover {
@@ -114,7 +166,28 @@
     }
 }
 
-.table {
+.sale-dialog {
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        border: 2px solid white;
+    }
+
+    .css-ypiqx9-MuiDialogContent-root {
+        padding: 5px;
+    }
+
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        background-color: black;
+        border-color: white;
+        border-width: 2px;
+    }
+}
+
+.sale-table {
+    background-color: #000000;
+    border: #000000;
+}
+
+.table-users {
     width: 95em !important;
     table-layout: fixed;
 }

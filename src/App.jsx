@@ -3,7 +3,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import OnePage from './pages/OnePage.jsx'
 import './'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Random from './Components/Random.jsx';
+import TwoPage from './pages/TwoPage.jsx';
+import Header from './pages/Header.jsx'
 export const queryClient = new QueryClient();
 
 
@@ -13,8 +14,9 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
             <Router>
                 <Routes>
-                    <Route path='/' element={<OnePage />} />
-                    <Route path='/Random' element={<Random />} />
+                    <Route path='/' element={<Header/>} />
+                    <Route path='/Users' element={<OnePage />} />
+                    <Route path='/TwoPage' element={<TwoPage />} />
                 </Routes>
             </Router>
         </QueryClientProvider>

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import {
-  Table, TableHead, TableRow, TableCell, TableBody, Box, IconButton, Tooltip
-} from '@mui/material';
+import { Table, TableHead, TableRow, TableCell, TableBody, Box, IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import { VisibilityOff } from '@mui/icons-material';
-const TableCon = ({ data, handleDelete, handleClickOpen, handleEdit }) => {
-  const [hoveredRowId, setHoveredRowId] = useState(null);
 
+const TableCon = ({ data, handleDelete, handleClickOpen, handleEdit }) => {
+
+  const [hoveredRowId, setHoveredRowId] = useState(null);
   const [visiblePasswords, setVisiblePasswords] = useState({})
 
   const togglePasswordVisibility = (id) => {
@@ -17,14 +16,15 @@ const TableCon = ({ data, handleDelete, handleClickOpen, handleEdit }) => {
       [id]: !prev[id],
     }));
   };
+
   return (
     <div>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',  overflowX: 'auto' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', overflowX: 'auto' }}>
         <Tooltip title='Добавить'>
           <IconButton className='add' onClick={handleClickOpen} ><AddIcon /></IconButton>
         </Tooltip>
         <h1 style={{ fontSize: '20px' }}>Пользователи</h1>
-        <Table className='table'>
+        <Table className='table-users'>
           <TableHead>
             <TableRow>
               <TableCell className='styles'>№</TableCell>

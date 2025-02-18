@@ -1,47 +1,42 @@
-import React from 'react';
-import '../i.scss';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import React, { useState } from 'react';
+import Chart from '../Components/Chart';
 import { Button } from 'theme-ui';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from 'react-router-dom';
+import Header from './Header'
+const TwoPage = () => {
+  const [numbersOne, setNumbersOne] = useState([]);
+  const [numbersTwo, setNumbersTwo] = useState([]);
+  const [numbersThree, setNumbersThree] = useState([]);
 
-const TwoPage = ({ numbers }) => {
-    const navigate = useNavigate();
-    
-    const config = {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Продажи за неделю'
-        },
-        xAxis: {
-            categories: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
-            title: {
-                text: 'Дни недели'
-            },
-        },
-        yAxis: {
-            title: {
-                text: 'Количество продаж'
-            }
-        },
-        series: [{
-            name: 'Data',
-            data: numbers.length > 0 ? numbers : [10, 15, 12, 8, 20, 25, 18],
-        }]
-    };
-    
-    return (
-        <div>
-            <HighchartsReact
-                highcharts={Highcharts}
-                options={config}
-            />
-            <Button className='chart' onClick={() => navigate('/')} ><ArrowBackIcon/></Button>
-        </div>
-    );
-};
+  const generator = () => {
+    const newNumbersOne = [];
+    const newNumbersTwo = [];
+    const newNumbersThree = []; 
 
-export default TwoPage;
+    for (let i = 0; i < 7; i++) {
+      const randomNumbersOne = Math.floor(Math.random() * 31);
+      newNumbersOne.push(randomNumbersOne);
+    }
+    setNumbersOne(newNumbersOne);
+
+    for (let i = 0; i < 7; i++) {
+      const randomNumbersTwo = Math.floor(Math.random() * 31)
+      newNumbersTwo.push(randomNumbersTwo);
+    }
+    setNumbersTwo(newNumbersTwo)
+
+    for (let i = 0; i < 7; i++) {
+      const randomNumbersThree = Math.floor(Math.random() * 31)
+      newNumbersThree.push(randomNumbersThree);
+    }
+    setNumbersThree(newNumbersThree)
+
+  };
+  return (
+    <div>
+      <Header />
+      <Button className='chart' onClick={generator}>Обновить данные</Button>
+      <Chart numbersOne={numbersOne} numbersTwo={numbersTwo} numbersThree={numbersThree}/>
+    </div>
+  )
+}
+export default TwoPage
