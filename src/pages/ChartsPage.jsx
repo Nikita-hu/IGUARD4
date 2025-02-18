@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Chart from '../Components/Chart';
 import { Button } from 'theme-ui';
 import Header from './Header'
-const TwoPage = () => {
+const ChartsPage = () => {
   const [numbersOne, setNumbersOne] = useState([]);
   const [numbersTwo, setNumbersTwo] = useState([]);
   const [numbersThree, setNumbersThree] = useState([]);
@@ -39,4 +39,4 @@ const TwoPage = () => {
     </div>
   )
 }
-export default TwoPage
+export default ChartsPage

@@ -1,9 +1,9 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import OnePage from './pages/OnePage.jsx'
+import UsersPage from './pages/UsersPage.jsx'
 import './'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import TwoPage from './pages/TwoPage.jsx';
+import ChartsPage from './pages/ChartsPage.jsx';
 import Header from './pages/Header.jsx'
 export const queryClient = new QueryClient();
 
@@ -15,8 +15,8 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path='/' element={<Header/>} />
-                    <Route path='/Users' element={<OnePage />} />
-                    <Route path='/TwoPage' element={<TwoPage />} />
+                    <Route path='/UsersPage' element={<UsersPage />} />
+                    <Route path='/ChartsPage' element={<ChartsPage />} />
                 </Routes>
             </Router>
         </QueryClientProvider>

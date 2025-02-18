@@ -24,11 +24,11 @@ export default function Header() {
 
   const handleChart = () => {
     setAnchorEl(null);
-    navigate('/TwoPage');
+    navigate('/ChartsPage');
   };
 
   const handleUsers = () => {
-    navigate('/Users')
+    navigate('/UsersPage')
   }
 
   return (
