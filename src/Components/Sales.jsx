@@ -4,7 +4,7 @@ import DialogContent from '@mui/material/DialogContent';
 import { Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 
 export default function Sales({ open, setOpen, category, salesOne, salesTwo, salesThree }) {
-    
+
     const handleClose = () => {
         setOpen(false);
     };

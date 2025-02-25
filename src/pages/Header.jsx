@@ -28,38 +28,43 @@ export default function Header() {
   };
 
   const handleUsers = () => {
+    setAnchorEl(null);
     navigate('/UsersPage')
   }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-      <Toolbar className='toolbar' >
-        <Tooltip title="Меню">
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
+    <div>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+        <Toolbar className='toolbar' >
+          <Tooltip title="Меню">
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+          </Tooltip>
+          <Menu className='back-word'
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
           >
-            <MenuIcon />
-          </IconButton>
-        </Tooltip>
-        <Menu className='back-word'
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem className='menu' onClick={handleChart}>Графики</MenuItem>
-          <MenuItem className='menu' onClick={handleUsers}>Пользователи</MenuItem>
-        </Menu>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
-          IGUARD4
-        </Typography>
-      </Toolbar>
-    </Box>
+            <MenuItem className='menu' onClick={handleChart}>Графики</MenuItem>
+            <MenuItem className='menu' onClick={handleUsers}>Пользователи</MenuItem>
+          </Menu>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+            IGUARD4
+          </Typography>
+        </Toolbar>
+      </Box>
+      <h1 className='title-word'>Добро пожаловать в мое приложение</h1>
+    </div>
+
   );
 }

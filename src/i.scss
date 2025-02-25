@@ -67,10 +67,6 @@
     border: 2px solid white !important;
 }
 
-// .styles-table {
-//     @extend .styles;
-//     height: 30px;
-// }
 
 .title {
     @extend .styles;
@@ -83,10 +79,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .body {
     background-color: #000000;
+}
+
+.loading {
+    .css-18lrjg1-MuiCircularProgress-root {
+        color:rgb(255, 255, 255)!important;
+    }
 }
 
 .error {
@@ -129,7 +132,7 @@
 
 .go {
     margin-top: 10px !important;
-    
+
     .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
         @extend .styles;
         color: rgb(255, 255, 255);
@@ -180,6 +183,12 @@
         border-color: white;
         border-width: 2px;
     }
+}
+
+.title-word {
+    color: rgb(234, 0, 255);
+    text-align: center;
+    font-size: 25px;
 }
 
 .sale-table {

@@ -6,7 +6,6 @@ import { validationSchema } from '../validation/Validation.js'
 import useApi from '../hook/useApi.js';
 import { useEditMutation, useCreateMutation, useDeleteMutation } from '../hook/useApi.js'
 import Dial from '../Components/Dial.jsx'
-import Header from './Header.jsx'
 
 const UsersPage = () => {
 
@@ -82,7 +81,6 @@ const UsersPage = () => {
 
     return (
         <div>
-            <Header />
             <Dial open={open} handleClose={handleClose} handleSubmit={handleSubmit} onSubmit={onSubmit}
                 register={register} errors={errors} reset={reset} checked={checked} setChecked={setChecked}
                 editRowId={editRowId} errorStyle={errorStyle} />

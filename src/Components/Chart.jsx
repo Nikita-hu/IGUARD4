@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import '../i.scss';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import Sales from './Sales';
-import { alpha, styled } from '@mui/material/styles';
+import BarChart from '../Charts/BarChart';
+import LineChart from '../Charts/LineChart';
+import CircularProgress from '@mui/material/CircularProgress';
 import { pink } from '@mui/material/colors';
 import Switch from '@mui/material/Switch';
+import { alpha, styled } from '@mui/material/styles';
 
 const PinkSwitch = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-switchBase.Mui-checked': {
@@ -20,7 +22,6 @@ const PinkSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Chart = ({ numbersOne, numbersTwo, numbersThree }) => {
-
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState(null);
     const [salesOne, setSalesOne] = useState(null);
@@ -28,154 +29,84 @@ const Chart = ({ numbersOne, numbersTwo, numbersThree }) => {
     const [salesThree, setSalesThree] = useState(null);
     const [showLegend, setShowLegend] = useState(true);
     const [currentDayIndex, setCurrentDayIndex] = useState(null);
+    const [showChartBar, setShowChartBar] = useState(false);
+
+    const today = new Date();
+    const dayIndex = today.getDay();
+    const adjustedIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+
+    const defaultChartOne = [10, 15, 12, 8, 20, 25, 18];
+    const defaultChartTwo = [5, 2, 4, 6, 7, 21, 17];
+    const defaultChartThree = [0, 4, 11, 14, 23, 9, 30];
 
     const toggleLegend = () => {
         setShowLegend(prev => !prev);
     };
 
+    const handleData = (index) => {
+        const updateSales = (numbers, defaultChart, setSales) => {
+            const sales = numbers[index] > 0 ? numbers[index] : defaultChart[index];
+            setSales(sales);
+        };
+
+        updateSales(numbersOne, defaultChartOne, setSalesOne);
+        updateSales(numbersTwo, defaultChartTwo, setSalesTwo);
+        updateSales(numbersThree, defaultChartThree, setSalesThree);
+        console.log(numbersOne, numbersTwo, numbersThree);
+    };
+
     const handleClickOpen = (point) => {
-        setCategory(point.category)
-        setOpen(true)
+        setCategory(point.category);
+        setOpen(true);
     };
 
     useEffect(() => {
-        const today = new Date();
-        const dayIndex = today.getDay();
-        const adjustedIndex = dayIndex === 0 ? 6 : dayIndex - 1;
         setCurrentDayIndex(adjustedIndex);
+
+        const timer = setTimeout(() => {
+            setShowChartBar(true);
+        }, 3000);
+
+        return () => clearTimeout(timer)
+
     }, []);
 
-    const defaultChart = [10, 15, 12, 8, 20, 25, 18]
 
-    const chart = {
-        chart: {
-            type: 'line',
-            width: 900,
-            height: 400,
-            textItem: 'center',
-            backgroundColor: 'black'
-        },
-        title: {
-            text: 'Продажи за неделю',
-            style: {
-                color: 'white',
-            }
-        },
-        xAxis: {
-            color: 'red',
-            categories: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
-            title: {
-                text: 'Дни недели',
-                style: {
-                    color: 'white'
-                }
-            },
-            labels: {
-                style: {
-                    color: 'white'
-                }
-            },
-            plotLines: [{
-                color: 'red',
-                width: 2,
-                zIndex: 2,
-                value: currentDayIndex,
-                dashStyle: 'Dash',
-                label: {
-                    text: 'Сегодняшний день',
-                    rotation: 0,
-                    y: 20,
-                    style: {
-                        color: 'red'
-                    }
-                }
-            }]
-        },
-        yAxis: {
-            title: {
-                text: 'Количество продаж',
-                style: {
-                    color: 'white',
-                }
-            },
-            labels: {
-                style: {
-                    color: 'white',
-                }
-            }
+    const chartLine = LineChart(
+        currentDayIndex, handleData, numbersOne,
+        numbersTwo, numbersThree, showLegend, handleClickOpen, defaultChartOne,
+        defaultChartTwo, defaultChartThree
+    );
 
-        },
-        series: [{
-            name: 'Отдел: 1',
-            data: numbersOne.length > 0 ? numbersOne : defaultChart,
-            color: 'green'
-        },
-        {
-            name: 'Отдел: 2',
-            data: numbersTwo.length > 0 ? numbersTwo : defaultChart,
-            color: 'blue'
-        },
-        {
-            name: 'Отдел: 3',
-            data: numbersThree.length > 0 ? numbersThree : defaultChart,
-            color: 'yellow'
-        },
-        ],
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            enabled: showLegend,
-            itemStyle: {
-                color: 'white',
-            },
-        },
-        credits: {
-            text: 'HightCharts.com',
-            style: {
-                color: 'black',
-            }
-        },
-        plotOptions: {
-            series: {
-                point: {
-                    events: {
-                        click: function () {
-                            const index = this.index
+    const chartBar = BarChart(showLegend);
 
-                            const salesOne = numbersOne[index] > 0 ? numbersOne[index] : defaultChart[index];
-                            setSalesOne(salesOne)
-
-
-                            const salesTwo = numbersTwo[index] > 0 ? numbersTwo[index] : defaultChart[index];
-                            setSalesTwo(salesTwo)
-
-                            const salesThree = numbersThree[index] > 0 ? numbersThree[index] : defaultChart[index];
-                            setSalesThree(salesThree)
-
-                            handleClickOpen(this);
-                        }
-                    }
-                }
-            }
-        }
-    }
     return (
         <div className="chart-container">
             <HighchartsReact
                 highcharts={Highcharts}
-                options={chart}
+                options={chartLine}
             />
-            <Sales open={open} setOpen={setOpen}
-                category={category} salesOne={salesOne}
-                salesTwo={salesTwo} salesThree={salesThree} defaultChart={defaultChart}
+
+            {showChartBar ? (
+                <HighchartsReact
+                    highcharts={Highcharts}
+                    options={chartBar}
+                />
+            ) : (
+                <CircularProgress sx={{ color: 'white' }} />
+            )}
+
+            <Sales
+                open={open}
+                setOpen={setOpen}
+                category={category}
+                salesOne={salesOne}
+                salesTwo={salesTwo}
+                salesThree={salesThree}
             />
             <PinkSwitch onClick={toggleLegend} defaultChecked />
         </div>
     );
-
 };
 
 export default Chart;
-
-
