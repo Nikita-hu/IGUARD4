@@ -1,4 +1,5 @@
-const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersThree, showLegend, handleClickOpen, defaultChartOne, defaultChartTwo, defaultChartThree,) => ({
+const LineChart = ( currentDayIndex, handleData, numbersOne, numbersTwo, numbersThree, showLegend, handleClickOpen, defaultChartOne, defaultChartTwo, defaultChartThree ) => ({
+
     chart: {
         type: 'line',
         width: 900,
@@ -6,12 +7,14 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
         textItem: 'center',
         backgroundColor: 'transparent'
     },
+
     title: {
         text: 'Продажи за неделю',
         style: {
             color: 'white',
         }
     },
+
     navigation: {
         buttonOptions: {
             align: 'right',
@@ -19,7 +22,9 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
             x: -10,
             y: 10,
         },
+
     },
+
     exporting: {
         buttons: {
             contextButton: {
@@ -51,8 +56,9 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
             }
         }
     },
+
     xAxis: {
-        color: 'red',
+        color: '#f44336',
         categories: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
         title: {
             text: 'Дни недели',
@@ -66,7 +72,7 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
             }
         },
         plotLines: [{
-            color: 'red',
+            color: '#f44336',
             width: 2,
             zIndex: 2,
             value: currentDayIndex,
@@ -76,7 +82,7 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
                 rotation: 0,
                 y: 20,
                 style: {
-                    color: 'red'
+                    color: '#f44336'
                 }
             }
         }]
@@ -97,17 +103,17 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
     series: [{
         name: 'Отдел: 1',
         data: numbersOne || defaultChartOne,
-        color: 'green'
+        color: '#76ff03'
     },
     {
         name: 'Отдел: 2',
         data: numbersTwo || defaultChartTwo,
-        color: 'blue'
+        color: '#00e5ff'
     },
     {
         name: 'Отдел: 3',
         data: numbersThree || defaultChartThree,
-        color: 'yellow'
+        color: '#ffea00'
     }],
     legend: {
         layout: 'vertical',

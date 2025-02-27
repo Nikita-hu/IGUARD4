@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import UsersPage from './pages/UsersPage.jsx';
 import ChartsPage from './pages/ChartsPage.jsx';
 import Layout from './Layout.jsx'

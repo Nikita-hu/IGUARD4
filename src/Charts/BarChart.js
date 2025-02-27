@@ -1,43 +1,50 @@
-const BarChart = (showLegend) => ({
+import { getColor } from '../hook/useStyle'
+
+const BarChart = ( showLegend ) => ({
+
     chart: {
-        type: 'bar',
+        type: 'column',
         width: 900,
         height: 400,
-        textItem: 'center',
         backgroundColor: 'transparent'
     },
+
     title: {
         style: {
             color: 'white',
         },
         text: 'Продажи за 4 квартала года',
-        align: 'centre'
+        align: 'center'
     },
+
     xAxis: {
         categories: [
             'Q1', 'Q2', 'Q3', 'Q4',
         ],
+
         labels: {
             style: {
                 color: 'white'
             }
         }
     },
+
     yAxis: {
         min: 0,
-
         title: {
             text: 'Суммы продаж за этот год',
             style: {
                 color: 'white',
             },
         },
+
         labels: {
             style: {
                 color: 'white'
             }
         }
     },
+
     legend: {
         layout: 'vertical',
         align: 'right',
@@ -46,49 +53,72 @@ const BarChart = (showLegend) => ({
         itemStyle: {
             color: 'white',
         },
+
         itemHoverStyle: {
             color: 'white'
         }
     },
+
     plotOptions: {
         series: {
             stacking: 'normal',
             dataLabels: {
                 enabled: true
-            }
+            },
+            borderWidth: 0,
         }
     },
-    series: [{
-        name: 'Категория: D',
-        data: [120, 80, 50, 70]
-    },
-    {
-        name: 'Категория: С',
-        data: [150, 90, 60, 90]
-    },
-    {
-        name: 'Категория: B',
-        data: [130, 70, 55, 45]
-    },
-    {
-        name: 'Категория: А',
-        data: [160, 100, 70, 105]
-    },
+
+    series: [
+        {
+            name: 'Категория: D',
+            data: [120, 80, 45, 65].map(value => ({
+                y: value,
+                color: getColor(value)
+            }))
+        },
+
+        {
+            name: 'Категория: C',
+            data: [30, 90, 60, 150].map(value => ({
+                y: value,
+                color: getColor(value)
+            }))
+        },
+
+        {
+            name: 'Категория: B',
+            data: [130, 70, 55, 20].map(value => ({
+                y: value,
+                color: getColor(value)
+            }))
+        },
+
+        {
+            name: 'Категория: A',
+            data: [160, 52, 70, 105].map(value => ({
+                y: value,
+                color: getColor(value)
+            }))
+        },
     ],
     tooltip: {
         formatter: function () {
             const index = this.point.index;
-            const total = this.series.chart.series.reduce((sum, series) => {
-                return sum + series.data[index].y;
+            const categoryName = this.series.name;
+            const total = this.series.data.reduce((sum, point) => {
+                return sum + point.y;
             }, 0);
-            return `Квартал ${index + 1} <br> ${this.series.name}  <br> Сумма: ${total} `;
+            return `Квартал: ${index + 1} <br> ${categoryName} <br>  Сумма по категории: ${total},`;
         }
     },
+
     credits: {
-        text: 'HightCharts.com',
+        text: 'HighCharts.com',
         style: {
             color: 'black',
         }
     },
 });
+
 export default BarChart;

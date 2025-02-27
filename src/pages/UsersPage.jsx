@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import TableCon from '../Components/TableCon.jsx';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from '../validation/Validation.js'
-import useApi from '../hook/useApi.js';
-import { useEditMutation, useCreateMutation, useDeleteMutation } from '../hook/useApi.js'
+import useApi from '../hook/useApiUsers.js';
+import { useEditMutation, useCreateMutation, useDeleteMutation } from '../hook/useApiUsers.js'
 import Dial from '../Components/Dial.jsx'
 
 const UsersPage = () => {
