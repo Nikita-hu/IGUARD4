@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import TableCon from '../Components/TableCon.jsx';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { validationSchema } from '../validation/Validation.js'
+import { validationSchema } from '../validation/ValidationUsers.js'
 import useApi from '../hook/useApiUsers.js';
 import { useEditMutation, useCreateMutation, useDeleteMutation } from '../hook/useApiUsers.js'
 import Dial from '../Components/Dial.jsx'
-
+import { errorStyle } from '../hook/useStyle.js';
 const UsersPage = () => {
 
     const [open, setOpen] = useState(false);
@@ -74,10 +74,6 @@ const UsersPage = () => {
 
     if (isLoading) return <div>Loading1...</div>;
     if (error) return <div>Error: {error.message}</div>;
-    const errorStyle = (error) => ({
-        border: error ? '2px solid red' : 'none',
-        fontSize: '50px'
-    })
 
     return (
         <div>

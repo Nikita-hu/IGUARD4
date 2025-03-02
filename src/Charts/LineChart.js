@@ -1,4 +1,4 @@
-const LineChart = ( currentDayIndex, handleData, numbersOne, numbersTwo, numbersThree, showLegend, handleClickOpen, defaultChartOne, defaultChartTwo, defaultChartThree ) => ({
+const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersThree, showLegend, handleClickOpen, defaultChartOne, defaultChartTwo, defaultChartThree) => ({
 
     chart: {
         type: 'line',

@@ -1,16 +1,18 @@
 import { pink } from '@mui/material/colors';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
+import logo from '../img/photo.jpg'
+import React  from 'react';
 
 export const getColor = (value) => {
     if (value < 50) {
-        return '#f44336';     
+        return '#f44336';
     } else if (value >= 50 && value <= 70) {
-        return '#ffea00';   
+        return '#ffea00';
     } else if (value > 70 && value <= 100) {
-        return '#76ff03';    
+        return '#76ff03';
     } else {
-        return '#00e5ff';     
+        return '#00e5ff';
     }
 };
 
@@ -25,3 +27,16 @@ export const PinkSwitch = styled(Switch)(({ theme }) => ({
         backgroundColor: pink[600],
     },
 }));
+
+export const Photo = {
+    logo: React.createElement('img', {
+        src: logo,
+        style: { height: 40, display: 'block' },
+        alt: 'Logo'
+    }),
+};
+
+export const errorStyle = (error) => ({
+    border: error ? '2px solid red' : 'none',
+    fontSize: '50px'
+})

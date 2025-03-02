@@ -34,7 +34,7 @@ export default function Header() {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+      <Box className='box'>
         <Toolbar className='toolbar' >
           <Tooltip title="Меню">
             <IconButton
@@ -62,6 +62,7 @@ export default function Header() {
             IGUARD4
           </Typography>
         </Toolbar>
+
       </Box>
       <h1 className='title-word'>Добро пожаловать в мое приложение</h1>
     </div>

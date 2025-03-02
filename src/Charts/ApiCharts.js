@@ -1,6 +1,6 @@
 import { getColor } from '../hook/useStyle'
 
-const ApiCharts = ( showLegend, Namel, Datel, currentMonthIndex ) => ({
+const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
 
   chart: {
     type: 'column',

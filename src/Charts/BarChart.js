@@ -1,6 +1,6 @@
 import { getColor } from '../hook/useStyle'
 
-const BarChart = ( showLegend ) => ({
+const BarChart = (showLegend) => ({
 
     chart: {
         type: 'column',

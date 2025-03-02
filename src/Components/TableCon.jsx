@@ -49,7 +49,7 @@ const TableCon = ({ data, handleDelete, handleClickOpen, handleEdit }) => {
                 <TableCell className='styles'>{g.email}</TableCell>
                 <TableCell className='styles'>{g.login}</TableCell>
                 <TableCell className='password'>
-                  <IconButton onClick={() => togglePasswordVisibility(g._id)}>
+                  <IconButton sx={{ color: 'white', fontSize: '11px' }} onClick={() => togglePasswordVisibility(g._id)}>
                     {visiblePasswords[g._id] ? g.password : <VisibilityOff />}
                   </IconButton>
                 </TableCell>
