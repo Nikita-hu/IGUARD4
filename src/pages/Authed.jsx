@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Card, FormControl, FormHelperText, OutlinedInput, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { setAuthed } from '../redux/store.js';
@@ -6,42 +6,73 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Photo, errorStyle } from '../hook/useStyle.js'
 import { validationAuthed } from '../validation/VallidationAuthed.js'
+import useApiAuthed from '../hook/useApiAuthed.js';
 
 const Authed = () => {
+    const { data, error, isLoading } = useApiAuthed()
+
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [localAuthed, setLocalAuthed] = useState(null);
+    const [localAuthed, setLocalAuthed] = useState(false);
     const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: yupResolver(validationAuthed)
     });
+    useEffect(() => { dispatch(setAuthed(localAuthed))[localAuthed, dispatch] })
+    if (isLoading) {
+        return <div>Загрузка...</div>;
+    }
+
+    if (error) {
+        return <div>Ошибка: {error.message}</div>;
+    }
+
+    if (!data || data.length === 0) {
+        return <div>Нет данных для отображения</div>;
+    }
+
+    // const getTodayDate = () => {
+    //     const today = new Date();
+    //     const year = today.getFullYear();
+    //     const month = String(today.getMonth() + 1).padStart(2, '0');
+    //     const day = String(today.getDate()).padStart(2, '0');
+    //     return `${year}-${month}-${day}`;
+    // };
+    // useEffect(() => {
+
+    //     const savedData = JSON.parse(localStorage.getItem('users'));
+    //     const todayDate = getTodayDate();
+
+    //     if (savedData) {
+    //         const isDateMatch = savedData.some(user => user.data === todayDate);
+    //         setLocalAuthed(isDateMatch);
+    //     }
+    // }, []);
 
     const handleLocal = () => {
+        // const todayDate = getTodayDate();
+        // const initialDate = [
+        //     { data: todayDate }
+        // ];
+        // localStorage.setItem('users', JSON.stringify(initialDate));
 
-        const initialUsers = [
-            { login: 'User1', password: 'user1' },
-            { login: 'User2', password: 'user2' },
-            { login: 'User3', password: 'user3' },
-        ];
-        localStorage.setItem('users', JSON.stringify(initialUsers));
-
-        const userExists = initialUsers.some(user => user.login === login && user.password === password);
+        const userExists = data.some(user => user.login === login && user.password === Number(password));
 
         if (userExists) {
             setLocalAuthed(true)
-        } else {
+        } else { 
             setLocalAuthed(false)
-            setError('password', {message: 'Неверный логин или пароль'})
+            setError('password', { message: 'Неверный логин или пароль' })
         }
-        dispatch(setAuthed(userExists))
-        setLogin('')
-        setPassword('')
     };
 
-    const onSubmit = () => {
+
+    const onSubmit = (data) => {
         handleLocal()
     }
+
+
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>

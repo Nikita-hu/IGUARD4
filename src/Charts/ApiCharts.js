@@ -1,12 +1,9 @@
-import { getColor } from '../hook/useStyle'
-
 const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
-
   chart: {
     type: 'column',
     width: 1000,
     height: 400,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   title: {
@@ -14,18 +11,18 @@ const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
       color: 'white',
     },
     text: 'Продажи за 4 квартала года',
-    align: 'center'
+    align: 'center',
   },
 
   xAxis: {
     categories: [
-      'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' // Категории на оси X
+      'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', // Категории на оси X
     ],
 
     labels: {
       style: {
-        color: 'white'
-      }
+        color: 'white',
+      },
     },
 
     plotLines: [{
@@ -39,10 +36,10 @@ const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
         rotation: 0,
         y: 20,
         style: {
-          color: '#f44336'
-        }
-      }
-    }]
+          color: '#f44336',
+        },
+      },
+    }],
   },
 
   yAxis: {
@@ -56,14 +53,14 @@ const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
       align: 'high',
       verticalAlign: 'bottom',
       y: -20,
-      x: 90
+      x: 90,
     },
 
     labels: {
       style: {
-        color: 'white'
-      }
-    }
+        color: 'white',
+      },
+    },
   },
 
   legend: {
@@ -77,34 +74,57 @@ const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
     },
 
     itemHoverStyle: {
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
+
   plotOptions: {
     series: {
-      stacking: 'normal',
-
+      stacking: null,
       dataLabels: {
-        enabled: true
+        enabled: true,
+        style: {
+          fontSize: '7px',
+          color: 'red',
+          textOutline: 'none',
+        },
+        borderWidth: '0px', 
       },
 
-      borderWidth: 0,
-    }
+    },
   },
 
   series: Namel.map((name, index) => ({
     name: name,
     data: Datel[index].map(value => ({
       y: value,
-      color: getColor(value)
-    }))
+      // color: {
+      //   linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1, x3: 0, y3:0.5 },
+      //   stops: [
+      //     [0, '#d500f9'],
+      //     [0.5, '#2979ff'],
+      //     [1, '#76ff03'],
+      //   ],
+      // },
+      color: ['#76ff03', '#33bfff', '#ffea00', '#ff1744'][index%4],
+      borderWidth: '0px'
+      // color: [{        
+      //   linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1, x3: 0, y3:0.5 },
+      //   stops: [
+      //     [0, '#d500f9'],
+      //     [0.5, '#2979ff'],
+      //     [1, '#76ff03'],
+      //   ],
+
+      }
+    )),
   })),
 
   credits: {
     text: 'HighCharts.com',
     style: {
       color: 'black',
-    }
+    },
   },
 
   tooltip: {
@@ -114,8 +134,8 @@ const ApiCharts = (showLegend, Namel, Datel, currentMonthIndex) => ({
       const total = this.series.data.reduce((sum, point) => {
         return sum + point.y;
       }, 0);
-      return `Квартал: ${index + 1} <br> ${categoryName} <br>  Сумма по категории: ${total},`;
-    }
+      return `Квартал: ${index + 1} <br> ${categoryName} <br> Сумма по категории: ${total}`;
+    },
   },
 });
 

@@ -109,7 +109,7 @@ const BarChart = (showLegend) => ({
             const total = this.series.data.reduce((sum, point) => {
                 return sum + point.y;
             }, 0);
-            return `Квартал: ${index + 1} <br> ${categoryName} <br>  Сумма по категории: ${total},`;
+            return `Квартал: ${index + 1} <br> ${categoryName} <br>  Сумма по категории: ${total}`;
         }
     },
 

@@ -40,3 +40,12 @@ export const errorStyle = (error) => ({
     border: error ? '2px solid red' : 'none',
     fontSize: '50px'
 })
+
+// export const date = (d) => {
+//         const today = new Date();
+//         const year = today.getFullYear();
+//         const month = String(today.getMonth() + 1).padStart(2, '0');
+//         const day = String(today.getDate()).padStart(2, '0');
+//         const date = `${year}-${month}-${day}`
+//         d = date
+// }
