@@ -6,6 +6,7 @@ import ChartsPage from './pages/ChartsPage.jsx';
 import Layout from './Layout.jsx'
 import { Provider } from 'react-redux';
 import { store } from "./redux/store.js"
+import Authed from './pages/Authed.jsx';
 export const queryClient = new QueryClient();
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
             <QueryClientProvider client={queryClient}>
                 <Router>
                     <Routes>
+                        <Route path='/login' element={<Authed />}/>
                         <Route path='/' element={<Layout />}>
                             <Route path='UsersPage' element={<UsersPage />} />
                             <Route path='ChartsPage' element={<ChartsPage />} />
