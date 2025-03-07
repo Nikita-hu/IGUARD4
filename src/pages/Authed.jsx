@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
-import { Box, Card, FormControl, FormHelperText, OutlinedInput, Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { setAuthed } from '../redux/store.js';
+import React, { useState, useEffect } from 'react';
+import { Box, Card } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthed, setAddUser, setLoginUser } from '../redux/store.js';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Photo, errorStyle } from '../hook/useStyle.js'
+import { Photo } from '../hook/useStyle.js'
 import { validationAuthed } from '../validation/VallidationAuthed.js'
 import useApiAuthed from '../hook/useApiAuthed.js';
 import { useNavigate } from 'react-router-dom';
+import Login from '../Components/Login.jsx'
+import SliderButton from '../Components/SliderButton.jsx'
+import Register from '../Components/Register.jsx';
+import { useDataCookie } from '../hook/useData.js';
 
 const Authed = () => {
-    const { data, error, isLoading } = useApiAuthed()
+    const { data: dataLogin, error, isLoading, refetch } = useApiAuthed()
+
+    const loginOrRegister = useSelector((state) => state.switchAuth)
+
+    const addUser = useSelector((state) => state.addUser)
 
     const navigate = useNavigate()
 
     const [login, setLogin] = useState('');
+
     const [password, setPassword] = useState('');
+
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (addUser) {
+            refetch();
+            dispatch(setAddUser(false));
+        }
+    })
 
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: yupResolver(validationAuthed)
@@ -30,20 +47,17 @@ const Authed = () => {
         return <div>Ошибка: {error.message}</div>;
     }
 
-    if (!data || data.length === 0) {
+    if (!dataLogin || dataLogin.length === 0) {
         return <div>Нет данных для отображения</div>;
     }
 
     const handleLocal = () => {
-
-        const userExists = data.some(user => user.login === login && user.password === Number(password));
-
+        const userExists = dataLogin.some(user => user.login === login && user.password === Number(password));
         if (userExists) {
+            dispatch(setLoginUser(login))
             dispatch(setAuthed(true))
-            const now = new Date()
-            const endOfDay = new Date(now)
-            endOfDay.setHours(23, 59, 59, 999)
-            const seconds = Math.floor((endOfDay - now) / 1000)
+            localStorage.setItem('login', login)
+            const seconds = useDataCookie()
             document.cookie = `isAuthed=true; max-age=${seconds}; path=/`;
             navigate('/')
         } else {
@@ -52,7 +66,6 @@ const Authed = () => {
         }
     };
 
-
     const onSubmit = () => {
         handleLocal()
     }
@@ -60,45 +73,22 @@ const Authed = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Box className="authed">
-                    <Card className='card'>
+            <Box className="authed">
+                <Card className='card-login'>
+                    <Box sx={{ marginBottom: 'auto' }}>
                         {Photo.logo}
-                        <FormControl key='login' sx={{ marginBottom: 0 }}>
-                            <FormHelperText className='styles'>Логин</FormHelperText>
-                            <OutlinedInput
-                                inputProps={{ style: { textAlign: 'center' } }}
-                                size='small'
-                                placeholder='Введите логин'
-                                className='enter-styles'
-                                sx={errorStyle(errors.login)}
-                                value={login}
-                                {...register('login')}
-                                onChange={(e) => setLogin(e.target.value)}
-                            />
-                            {errors.login && <span className='error'>{errors.login.message}</span>}
-                        </FormControl>
-
-                        <FormControl key='password' sx={{ marginBottom: 0 }}>
-                            <FormHelperText className='styles'>Пароль</FormHelperText>
-                            <OutlinedInput
-                                inputProps={{ style: { textAlign: 'center' } }}
-                                size='small'
-                                sx={errorStyle(errors.password)}
-                                placeholder='Введите пароль'
-                                className='enter-styles'
-                                {...register('password')}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            {errors.password && <span className='error'>{errors.password.message}</span>}
-                        </FormControl>
-                        <Button type='submit' className="button registr">
-                            Войти
-                        </Button>
-                    </Card>
-                </Box>
-            </form>
+                        <SliderButton />
+                    </Box>
+                    {!loginOrRegister ? (
+                        <>
+                            <Login className="authed" onSubmit={onSubmit} register={register} handleSubmit={handleSubmit} errors={errors} login={login} setLogin={setLogin} password={password} setPassword={setPassword} />
+                        </>
+                    ) : (
+                        <Register className="authed" />
+                    )
+                    }
+                </Card>
+            </Box>
         </div>
     );
 };

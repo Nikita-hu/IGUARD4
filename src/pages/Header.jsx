@@ -8,15 +8,25 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Tooltip } from '@mui/material';
 import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setAuthed, setLoginUser } from '../redux/store';
+import LogoutIcon from '@mui/icons-material/Logout';
 export default function Header() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const handleExit = () => {
+    document.cookie = "isAuthed=; max-age=0; path=/"
+    dispatch(setAuthed(false))
+    dispatch(setLoginUser(""))
+  }
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -31,7 +41,13 @@ export default function Header() {
     setAnchorEl(null);
     navigate('/UsersPage')
   }
-
+  const login = useSelector((state) => state.login)
+  useEffect(() => {
+    const savedLogin = localStorage.getItem('login');
+    if (savedLogin) {
+      dispatch((setLoginUser(savedLogin)))
+    }
+  })
   return (
     <div>
       <Box className='box'>
@@ -58,9 +74,28 @@ export default function Header() {
             <MenuItem className='menu' onClick={handleChart}>Графики</MenuItem>
             <MenuItem className='menu' onClick={handleUsers}>Пользователи</MenuItem>
           </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
-            IGUARD4
-          </Typography>
+
+          <Box sx={{ textAlign: 'center', flexGrow: 1 }}>
+            <Typography variant="h6" component="div">
+              IGUARD4
+            </Typography>
+            <Typography variant="body1" component="div">
+              Ваш Логин: {login}
+            </Typography>
+          </Box>
+          <Tooltip title="Выход">
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+              onClick={handleExit}
+            >
+              <LogoutIcon />
+            </IconButton>
+          </Tooltip>
+
         </Toolbar>
 
       </Box>

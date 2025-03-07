@@ -10,17 +10,29 @@ const isAuthed = () => {
 }
 
 const authSlice = createSlice({
-    
+
     name: 'auth',
-    initialState: { 
-        authed: isAuthed() 
+    initialState: {
+        authed: isAuthed(),
+        switchAuth: false,
+        addUser: false,
+        login: ""
     },
     reducers: {
         setAuthed: (state, action) => {
             state.authed = action.payload;
+        },
+        setSwitch: (state, action) => {
+            state.switchAuth = action.payload;
+        },
+        setAddUser: (state, action) => {
+            state.addUser = action.payload;
+        },
+        setLoginUser: (state, action) => {
+            state.login = action.payload;
         }
     }
 });
 
-export const { setAuthed } = authSlice.actions;
+export const { setLoginUser, setAddUser, setSwitch, setAuthed} = authSlice.actions;
 export const store = configureStore({ reducer: authSlice.reducer });

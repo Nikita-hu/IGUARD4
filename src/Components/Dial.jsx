@@ -1,10 +1,10 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, Button, Box, FormControl, FormHelperText, OutlinedInput, FormLabel, FormControlLabel, Radio, IconButton, Tooltip } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Button, Box, FormControl, FormHelperText, OutlinedInput, FormLabel, FormControlLabel, Radio, IconButton } from '@mui/material';
 import '../i.scss'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Man2SharpIcon from '@mui/icons-material/Man2Sharp';
 import Woman2SharpIcon from '@mui/icons-material/Woman2Sharp';
-const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, reset, checked, setChecked, editRowId, errorStyle }) => {
+const Dial = ({ open, handleClose, handleSubmit, onSubmit, register, errors, checked, setChecked, editRowId, errorStyle }) => {
     return (
         <Dialog
             open={open}

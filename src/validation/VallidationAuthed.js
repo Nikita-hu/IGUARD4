@@ -5,7 +5,7 @@ export const validationAuthed = Yup.object().shape({
         .required("Неверно ввели данные"),
 
     password: Yup.string()
-        .required("Неверно ввели данные")
+        .required("Неверно ввели данные"),
 });
 
 

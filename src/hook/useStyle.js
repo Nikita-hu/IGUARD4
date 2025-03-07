@@ -31,7 +31,7 @@ export const PinkSwitch = styled(Switch)(({ theme }) => ({
 export const Photo = {
     logo: React.createElement('img', {
         src: logo,
-        style: { height: 40, display: 'block' },
+        style: { height: 40, display: 'block', marginLeft: 'auto', marginRight: 'auto' },
         alt: 'Logo'
     }),
 };
@@ -40,12 +40,3 @@ export const errorStyle = (error) => ({
     border: error ? '2px solid red' : 'none',
     fontSize: '50px'
 })
-
-// export const date = (d) => {
-//         const today = new Date();
-//         const year = today.getFullYear();
-//         const month = String(today.getMonth() + 1).padStart(2, '0');
-//         const day = String(today.getDate()).padStart(2, '0');
-//         const date = `${year}-${month}-${day}`
-//         d = date
-// }

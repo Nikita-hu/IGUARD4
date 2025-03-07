@@ -9,7 +9,8 @@ const useApiAuthed = () => {
         return res.data;
     };
 
-    return useQuery(['authed'], fetchGet, { refetchOnWindowFocus: false });
+    const { data, error, isLoading, refetch } = useQuery(['authed'], fetchGet, { refetchOnWindowFocus: false });
+    return { data, error, isLoading, refetch }
 };
 
 export default useApiAuthed;
