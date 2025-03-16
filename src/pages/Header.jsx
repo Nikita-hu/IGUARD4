@@ -41,6 +41,12 @@ export default function Header() {
     setAnchorEl(null);
     navigate('/UsersPage')
   }
+
+  const handleTasks = () => {
+    setAnchorEl(null);
+    navigate('/TasksPage')
+  }
+
   const login = useSelector((state) => state.login)
   useEffect(() => {
     const savedLogin = localStorage.getItem('login');
@@ -73,6 +79,7 @@ export default function Header() {
           >
             <MenuItem className='menu' onClick={handleChart}>Графики</MenuItem>
             <MenuItem className='menu' onClick={handleUsers}>Пользователи</MenuItem>
+            <MenuItem className='menu' onClick={handleTasks}>Мои задачи</MenuItem>
           </Menu>
 
           <Box sx={{ textAlign: 'center', flexGrow: 1 }}>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { setSwitch } from "../redux/store";
+import { setSwitch, setActiveSwitch } from "../redux/store";
 
 const SlidingButton = () => {
   const [active, setActive] = useState(false);
@@ -10,7 +10,7 @@ const SlidingButton = () => {
   const handleClick = (type) => {
     setActive(type);
     dispatch(setSwitch(type))
-
+    dispatch(setActiveSwitch(type))
   };
 
   return (

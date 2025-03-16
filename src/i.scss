@@ -206,9 +206,31 @@
     .css-kw13he-MuiDialogContent-root {
         padding: 1px;
     }
-
 }
 
+.task-dialog {
+    .css-10d30g3-MuiPaper-root-MuiDialog-paper {
+        background-color: #000000;
+        border: 2px solid #91ff35;
+    }
+}
+
+
+.task-buttonh {
+    .css-1uent87-MuiButtonBase-root-MuiButton-root {
+    border-radius: 10px!important;
+    color: #000000!important;
+    background-color: #767676!important;
+    width: 160px;
+    }
+    &:hover {
+        .css-1uent87-MuiButtonBase-root-MuiButton-root  {
+            color: #91ff35!important;
+            background-color: #000000 !important;
+    }
+}
+
+}
 .title-word {
     color: rgb(255, 255, 255);
     text-align: center;
@@ -219,6 +241,7 @@
     background-color: #000000;
     border: #000000;
 }
+
 
 .table-users {
     width: 100% !important;
@@ -252,7 +275,7 @@
 
 .card-login {
     @extend .box;
-    
+
     width: 250px;
     // height: 250px;
     // height: auto;

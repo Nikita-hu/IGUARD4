@@ -9,8 +9,9 @@ import { FormLabel, FormControlLabel, Radio } from '@mui/material';
 import { useCreateMutation } from '../hook/useApiUsers.js'
 import useApi from '../hook/useApiUsers.js';
 import { validationSchema } from '../validation/ValidationUsers.js';
-import { setAddUser } from '../redux/store.js'
+import { setActiveSwitch, setAddUser, setSwitch } from '../redux/store.js'
 import { useDispatch } from 'react-redux';
+
 
 const Register = () => {
     const [checked, setChecked] = useState(false);
@@ -35,6 +36,9 @@ const Register = () => {
         try {
             await create.mutateAsync(data);
             dispatch(setAddUser(true));
+            dispatch(setSwitch(false))
+            dispatch(setActiveSwitch(false))
+           
             reset();
         } catch {
             console.log('scsdc')
@@ -142,8 +146,8 @@ const Register = () => {
                         />
                         {errors.gender && <span className='error'>{errors.gender.message}</span>}
                     </FormControl>
-
                     <Button type="submit" className='button registr' >Зарегистрироваться</Button>
+                   
 
                 </Box>
             </form>

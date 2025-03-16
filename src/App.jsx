@@ -7,6 +7,7 @@ import Layout from './Layout.jsx'
 import { Provider } from 'react-redux';
 import { store } from "./redux/store.js"
 import Authed from './pages/Authed.jsx';
+import TasksPage from './pages/TasksPage.jsx';
 export const queryClient = new QueryClient();
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
                         <Route path='/' element={<Layout />}>
                             <Route path='UsersPage' element={<UsersPage />} />
                             <Route path='ChartsPage' element={<ChartsPage />} />
+                            <Route path='TasksPage' element={<TasksPage />} />
                         </Route>
                     </Routes>
                 </Router>

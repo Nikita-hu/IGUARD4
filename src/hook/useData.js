@@ -12,3 +12,14 @@ export const useDataCookie = () => {
     endOfDay.setHours(23, 59, 59, 999)
     return Math.floor((endOfDay - now) / 1000)
 }
+
+export const useDataTask = () => {
+    
+    return new Date().toLocaleDateString("ru-RU", {
+        day: "2-digit", 
+        month: "2-digit", 
+        year: "numeric" 
+    }).replace(/\//g, '.'); 
+
+
+}

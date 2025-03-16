@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from '../Components/Chart';
 import { Button } from 'theme-ui';
 import { Tooltip } from '@mui/material';
@@ -9,7 +9,35 @@ const ChartsPage = () => {
   const [numbersTwo, setNumbersTwo] = useState(false);
   const [numbersThree, setNumbersThree] = useState(false);
   const [showLegend, setShowLegend] = useState(true);
+  const [activeUpDate, setActiveUpDate] = useState(true);
+  const [intervalId,setInterval] = useState(null)
+  // useEffect(() => {
+  //   if (activeUpDate) {
+  //     generator(); 
+  //   }
 
+  // }, []);
+
+  useEffect(() => {
+    if (activeUpDate) {
+      generator(); 
+      const id = setInterval(() => {
+        generator(); 
+      }, 10000);
+      setInterval(id); 
+    }
+
+    return () => clearInterval(intervalId); 
+  }, [activeUpDate]);
+
+  const handleButtonClick = () => {
+    if (activeUpDate) {
+      setActiveUpDate(false); 
+    } else {
+      setActiveUpDate(true);
+      generator(); 
+    }
+  };
   const generatorRandom = () => {
     return Array.from({ length: 7 }, () => Math.floor(Math.random() * 31))
   }
@@ -25,7 +53,7 @@ const ChartsPage = () => {
   };
   return (
     <div>
-      <Button className='chart' onClick={generator}>Обновить данные</Button>
+      <Button className='chart' onClick={handleButtonClick} disabled={!activeUpDate}>Обновить данные</Button>
 
       <Tooltip title={tooltip}>
         <PinkSwitch onClick={toggleLegend} defaultChecked />

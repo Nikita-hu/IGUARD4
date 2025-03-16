@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, FormControl, FormHelperText, OutlinedInput, Button } from '@mui/material';
 import { errorStyle } from '../hook/useStyle.js'
 
-const Login = ({ className, onSubmit, data, register, handleSubmit, errors, login, password, setLogin, setPassword }) => {
+const Login = ({ className, onSubmit, register, handleSubmit, errors, login, password, setLogin, setPassword }) => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>

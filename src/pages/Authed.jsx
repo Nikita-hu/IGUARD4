@@ -15,7 +15,8 @@ import { useDataCookie } from '../hook/useData.js';
 
 const Authed = () => {
     const { data: dataLogin, error, isLoading, refetch } = useApiAuthed()
-
+//   const [active, setActive] = useState(false);
+//     const [loginOrRegister, setLoginOrRegister] = useState(false);
     const loginOrRegister = useSelector((state) => state.switchAuth)
 
     const addUser = useSelector((state) => state.addUser)
@@ -77,14 +78,12 @@ const Authed = () => {
                 <Card className='card-login'>
                     <Box sx={{ marginBottom: 'auto' }}>
                         {Photo.logo}
-                        <SliderButton />
+                        <SliderButton/>
                     </Box>
                     {!loginOrRegister ? (
-                        <>
                             <Login className="authed" onSubmit={onSubmit} register={register} handleSubmit={handleSubmit} errors={errors} login={login} setLogin={setLogin} password={password} setPassword={setPassword} />
-                        </>
                     ) : (
-                        <Register className="authed" />
+                        <Register className="authed" loginOrRegister={loginOrRegister} />
                     )
                     }
                 </Card>

@@ -1,4 +1,4 @@
-const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersThree, showLegend, handleClickOpen, defaultChartOne, defaultChartTwo, defaultChartThree) => ({
+const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersThree, showLegend, handleClickOpen) => ({
 
     chart: {
         type: 'line',
@@ -102,17 +102,17 @@ const LineChart = (currentDayIndex, handleData, numbersOne, numbersTwo, numbersT
     },
     series: [{
         name: 'Отдел: 1',
-        data: numbersOne || defaultChartOne,
+        data: numbersOne,
         color: '#76ff03'
     },
     {
         name: 'Отдел: 2',
-        data: numbersTwo || defaultChartTwo,
+        data: numbersTwo,
         color: '#00e5ff'
     },
     {
         name: 'Отдел: 3',
-        data: numbersThree || defaultChartThree,
+        data: numbersThree,
         color: '#ffea00'
     }],
     legend: {

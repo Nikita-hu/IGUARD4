@@ -29,10 +29,6 @@ const Chart = ({ numbersOne, numbersTwo, numbersThree, showLegend }) => {
 
     const { monthIndex, adjustedIndex } = useData()
 
-    const defaultChartOne = [10, 15, 12, 8, 20, 25, 18];
-    const defaultChartTwo = [5, 2, 4, 6, 7, 21, 17];
-    const defaultChartThree = [0, 4, 11, 14, 23, 9, 30];
-
     const { data, error, isLoading } = useApiChart(year)
 
     const toggleYear = () => {
@@ -40,14 +36,13 @@ const Chart = ({ numbersOne, numbersTwo, numbersThree, showLegend }) => {
     }
 
     const handleData = (index) => {
-        const updateSales = (numbers, defaultChart, setSales) => {
-            const sales = numbers[index] > 0 ? numbers[index] : defaultChart[index];
+        const updateSales = (numbers, setSales) => {
+            const sales = numbers[index]
             setSales(sales);
         };
-        updateSales(numbersOne, defaultChartOne, setSalesOne);
-        updateSales(numbersTwo, defaultChartTwo, setSalesTwo);
-        updateSales(numbersThree, defaultChartThree, setSalesThree);
-        console.log(numbersOne, numbersTwo, numbersThree);
+        updateSales(numbersOne, setSalesOne);
+        updateSales(numbersTwo, setSalesTwo);
+        updateSales(numbersThree, setSalesThree);
     };
 
     const handleClickOpen = (point) => {
@@ -94,16 +89,16 @@ const Chart = ({ numbersOne, numbersTwo, numbersThree, showLegend }) => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
 
                 <Line currentDayIndex={currentDayIndex} handleData={handleData} numbersOne={numbersOne}
-                    numbersTwo={numbersTwo} numbersThree={numbersThree} showLegend={showLegend} handleClickOpen={handleClickOpen} defaultChartOne={defaultChartOne}
-                    defaultChartTwo={defaultChartTwo} defaultChartThree={defaultChartThree}></Line>
+                    numbersTwo={numbersTwo} numbersThree={numbersThree} showLegend={showLegend} handleClickOpen={handleClickOpen} 
+                />
 
-                <Bar showLegend={showLegend} showChartBar={showChartBar}></Bar>
+                <Bar showLegend={showLegend} showChartBar={showChartBar} />
 
                 <Button className='chart' onClick={toggleYear}>
                     Переключить год на {year === 2023 ? 2024 : 2023}
                 </Button>
 
-                <Api showLegend={showLegend} Namel={Namel} Datel={Datel} currentMonthIndex={currentMonthIndex}></Api>
+                <Api showLegend={showLegend} Namel={Namel} Datel={Datel} currentMonthIndex={currentMonthIndex} />
 
                 <Sales
                     open={open}
