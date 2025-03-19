@@ -1,20 +1,14 @@
 
 import React, { useState } from 'react';
-import { DndContext } from '@dnd-kit/core';
-import { Draggable } from '../DragAndDrop/Draggable';
-import { Droppable } from '../DragAndDrop/Droppable';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask, deleteTask, updateTaskStatus } from '../redux/store';
 import { IconButton, Tooltip, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 import TaskAdd from '../DragAndDrop/TaskAdd';
 import { useForm } from 'react-hook-form';
 import { validationTask } from '../validation/VallidationAuthed';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Style, TaskEnd } from '../DragAndDrop/useHookTask'
 import DndContextTasks from '../DragAndDrop/DndContext.jsxTasks';
-
 
 function TasksPage() {
     const dispatch = useDispatch();
@@ -72,7 +66,7 @@ function TasksPage() {
                         <AddIcon />
                     </IconButton>
                 </Tooltip>
-                
+
                 <TaskAdd open={open} setOpen={setOpen} addFollowTask={addFollowTask} setAddFollowTask={setAddFollowTask} handleAddTask={handleAddTask} onSubmit={onSubmit} register={register} handleSubmit={handleSubmit} errors={errors} />
 
                 <DndContextTasks handleDragEnd={handleDragEnd} handleDeleteTask={handleDeleteTask} hoveredRowId={hoveredRowId} setHoveredRowId={setHoveredRowId} tasks={tasks} />
