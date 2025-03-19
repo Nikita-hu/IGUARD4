@@ -66,12 +66,6 @@ const authSlice = createSlice({
             const taskId = action.payload;
             state.tasks = state.tasks.filter(task => task.id !== taskId);
         },
-        // setSwitchUpDate: (state, action) => {
-        //     state.switch = action.payload;
-        // },
-        // setActiveSwitchUpDate: (state, action) => {
-        //     state.activeSwitch = action.payload
-        // },
     }
 });
 

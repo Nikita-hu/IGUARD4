@@ -15,8 +15,7 @@ import { useDataCookie } from '../hook/useData.js';
 
 const Authed = () => {
     const { data: dataLogin, error, isLoading, refetch } = useApiAuthed()
-//   const [active, setActive] = useState(false);
-//     const [loginOrRegister, setLoginOrRegister] = useState(false);
+
     const loginOrRegister = useSelector((state) => state.switchAuth)
 
     const addUser = useSelector((state) => state.addUser)

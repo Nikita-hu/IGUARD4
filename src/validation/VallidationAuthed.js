@@ -14,7 +14,7 @@ export const validationTask = Yup.object().shape({
 
     addFollowTask: Yup.string()
         .required("Введите задачу")
-        .max(49, "Ввод должен быть не болле")
+        .max(26, "Ввод должен быть не боллее 26 символов")
 });
 
 

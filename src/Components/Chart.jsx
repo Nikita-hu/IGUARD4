@@ -7,6 +7,7 @@ import Line from '../Graphics/Charts/Line';
 import Bar from '../Graphics/Charts/Bar';
 import Api from '../Graphics/Charts/Api';
 import { useData } from '../hook/useData'
+
 const Chart = ({ numbersOne, numbersTwo, numbersThree, showLegend }) => {
 
     const [open, setOpen] = useState(false);
@@ -89,7 +90,7 @@ const Chart = ({ numbersOne, numbersTwo, numbersThree, showLegend }) => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
 
                 <Line currentDayIndex={currentDayIndex} handleData={handleData} numbersOne={numbersOne}
-                    numbersTwo={numbersTwo} numbersThree={numbersThree} showLegend={showLegend} handleClickOpen={handleClickOpen} 
+                    numbersTwo={numbersTwo} numbersThree={numbersThree} showLegend={showLegend} handleClickOpen={handleClickOpen}
                 />
 
                 <Bar showLegend={showLegend} showChartBar={showChartBar} />

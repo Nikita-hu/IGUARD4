@@ -18,8 +18,6 @@ const Register = () => {
 
     const dispatch = useDispatch();
 
-    const { data, error, isLoading } = useApi();
-
     const { register, reset, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(validationSchema)
     });
@@ -38,16 +36,11 @@ const Register = () => {
             dispatch(setAddUser(true));
             dispatch(setSwitch(false))
             dispatch(setActiveSwitch(false))
-           
             reset();
         } catch {
             console.log('scsdc')
         }
     };
-
-    if (isLoading) return <div>Loading1...</div>;
-
-    if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div>

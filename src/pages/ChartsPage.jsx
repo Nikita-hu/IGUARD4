@@ -1,66 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import Chart from '../Components/Chart';
-import { Button } from 'theme-ui';
 import { Tooltip } from '@mui/material';
 import { PinkSwitch } from '../hook/useStyle'
-
+import { SliderUpDate } from '../Components/SliderUpDate';
 const ChartsPage = () => {
-  const [numbersOne, setNumbersOne] = useState(false);
-  const [numbersTwo, setNumbersTwo] = useState(false);
-  const [numbersThree, setNumbersThree] = useState(false);
+  const [numbersOne, setNumbersOne] = useState([]); 
+  const [numbersTwo, setNumbersTwo] = useState([]); 
+  const [numbersThree, setNumbersThree] = useState([]); 
   const [showLegend, setShowLegend] = useState(true);
-  const [activeUpDate, setActiveUpDate] = useState(true);
-  const [intervalId,setInterval] = useState(null)
-  // useEffect(() => {
-  //   if (activeUpDate) {
-  //     generator(); 
-  //   }
-
-  // }, []);
+  const [activeUpDate, setActiveUpDate] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
 
   useEffect(() => {
     if (activeUpDate) {
-      generator(); 
-      const id = setInterval(() => {
-        generator(); 
-      }, 10000);
-      setInterval(id); 
-    }
+      generator();
+      const id = setInterval(generator, 10000); 
+      setIntervalId(id); 
 
-    return () => clearInterval(intervalId); 
+      return () => clearInterval(id);
+    } else {
+      clearInterval(intervalId);
+    }
   }, [activeUpDate]);
 
-  const handleButtonClick = () => {
-    if (activeUpDate) {
-      setActiveUpDate(false); 
-    } else {
-      setActiveUpDate(true);
-      generator(); 
-    }
-  };
   const generatorRandom = () => {
-    return Array.from({ length: 7 }, () => Math.floor(Math.random() * 31))
-  }
+    return Array.from({ length: 7 }, () => Math.floor(Math.random() * 31));
+  };
 
   const generator = () => {
     setNumbersOne(generatorRandom());
     setNumbersTwo(generatorRandom());
     setNumbersThree(generatorRandom());
   };
-  const tooltip = showLegend ? "Скрыть легенду" : "Показать легенду"
+
+  const tooltip = showLegend ? "Скрыть легенду" : "Показать легенду";
   const toggleLegend = () => {
     setShowLegend(prev => !prev);
   };
+
+  const handleClick = (type) => {
+    setActiveUpDate(type);
+    console.log(type);
+  };
+
   return (
     <div>
-      <Button className='chart' onClick={handleButtonClick} disabled={!activeUpDate}>Обновить данные</Button>
-
+      <SliderUpDate 
+        activeUpDate={activeUpDate} 
+        setActiveUpDate={setActiveUpDate} 
+        disabled={activeUpDate} 
+        handleClick={handleClick} 
+      />
       <Tooltip title={tooltip}>
         <PinkSwitch onClick={toggleLegend} defaultChecked />
       </Tooltip>
-
-      <Chart numbersOne={numbersOne} numbersTwo={numbersTwo} numbersThree={numbersThree} showLegend={showLegend} />
+      <Chart 
+        numbersOne={numbersOne} 
+        numbersTwo={numbersTwo} 
+        numbersThree={numbersThree} 
+        showLegend={showLegend} 
+      />
     </div>
-  )
-}
-export default ChartsPage
+  );
+};
+
+export default ChartsPage;
