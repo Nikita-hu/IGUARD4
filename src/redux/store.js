@@ -12,17 +12,23 @@ const isAuthed = () => {
 
 const date = useDataTask()
 
+const status = {
+    1: "Нужно сделать",
+    2: "В работе",
+    3: "Отложено",
+    4: "Выполнено"
+}
 const initialTasks = [
-    { id: 1, task: 'Задача 1', date: date, status: 'Нужно сделать' },
-    { id: 2, task: 'Задача 2', date: date, status: 'Нужно сделать' },
-    { id: 3, task: 'Задача 3', date: date, status: 'Нужно сделать' },
-    { id: 4, task: 'Задача 4', date: date, status: 'Нужно сделать' },
-    { id: 5, task: 'Задача 5', date: date, status: 'Нужно сделать' },
-    { id: 6, task: 'Задача 6', date: date, status: 'Нужно сделать' },
-    { id: 7, task: 'Задача 7', date: date, status: 'Нужно сделать' },
-    { id: 8, task: 'Задача 8', date: date, status: 'Нужно сделать' },
-    { id: 9, task: 'Задача 9', date: date, status: 'Нужно сделать' },
-    { id: 10, task: `Задача 10`, date: date, status: 'Нужно сделать' }
+    { id: 1, task: 'Задача 1', date: date, status: status[1] },
+    { id: 2, task: 'Задача 2', date: date, status: status[1] },
+    { id: 3, task: 'Задача 3', date: date, status: status[1] },
+    { id: 4, task: 'Задача 4', date: date, status: status[1] },
+    { id: 5, task: 'Задача 5', date: date, status: status[1] },
+    { id: 6, task: 'Задача 6', date: date, status: status[1] },
+    { id: 7, task: 'Задача 7', date: date, status: status[1] },
+    { id: 8, task: 'Задача 8', date: date, status: status[1] },
+    { id: 9, task: 'Задача 9', date: date, status: status[1] },
+    { id: 10, task: `Задача 10`, date: date, status: status[1] }
 ];
 
 const authSlice = createSlice({

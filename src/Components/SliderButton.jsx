@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setSwitch, setActiveSwitch } from "../redux/store";
-
-const SlidingButton = () => {
+import "../SwitchButton.scss";
+const SlidingButton = ({ activeStyle }) => {
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
-  console.log(active)
   const handleClick = (type) => {
     setActive(type);
     dispatch(setSwitch(type))
@@ -25,30 +24,32 @@ const SlidingButton = () => {
       }}
     >
       <Button
-        sx={{
-          flex: 1,
-          borderRadius: "25px",
-          borderColor: ' 1px solid green',
-          backgroundColor: active === false ? "#91ff35" : "#000",
-          color: active === false ? "#000" : "#fff",
-          zIndex: 1,
-          transition: "background-color 0.3s",
-          fontSize: '11px'
-        }}
+        className={
+          activeStyle
+            ? 
+            !active
+              ? "no-active-authedButton-animation"
+              : "yes-active-authedButton-animation"
+            : 
+            !active
+              ? "no-active-authedButton"
+              : "yes-active-authedButton"
+        }
         onClick={() => handleClick(false)}
       >
         Войти
       </Button>
+
       <Button
-        sx={{
-          flex: 1,
-          borderRadius: "25px",
-          backgroundColor: active === true ? "#91ff35" : "#000",
-          color: active === true ? "#000" : "#fff",
-          zIndex: 1,
-          transition: "background-color 0.3s",
-          fontSize: '11px'
-        }}
+        className={
+          activeStyle
+            ? active
+              ? "no-active-authedButton-animation"
+              : "yes-active-authedButton-animation"
+            : active
+              ? "no-active-authedButton"
+              : "yes-active-authedButton"
+        }
         onClick={() => handleClick(true)}
       >
         Регистрация
@@ -66,7 +67,7 @@ const SlidingButton = () => {
           zIndex: 0,
         }}
       />
-    </Box>
+    </Box >
   );
 };
 

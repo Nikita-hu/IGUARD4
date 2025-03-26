@@ -16,6 +16,8 @@ import { useDataCookie } from '../hook/useData.js';
 const Authed = () => {
     const { data: dataLogin, error, isLoading, refetch } = useApiAuthed()
 
+    const [activeStyle, setActiveStyle] = useState(false);
+
     const loginOrRegister = useSelector((state) => state.switchAuth)
 
     const addUser = useSelector((state) => state.addUser)
@@ -33,7 +35,14 @@ const Authed = () => {
             refetch();
             dispatch(setAddUser(false));
         }
-    })
+
+    }, [addUser])
+    useEffect(() => {
+
+        const randomBoolean = Math.random() < 0.5;
+        setActiveStyle(randomBoolean);
+    }, [])
+
 
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: yupResolver(validationAuthed)
@@ -53,6 +62,7 @@ const Authed = () => {
 
     const handleLocal = () => {
         const userExists = dataLogin.some(user => user.login === login && user.password === Number(password));
+        
         if (userExists) {
             dispatch(setLoginUser(login))
             dispatch(setAuthed(true))
@@ -70,23 +80,27 @@ const Authed = () => {
         handleLocal()
     }
 
+  
+
+
 
     return (
-        <div>
+        <div style={{marginTop: "120px"}}>
             <Box className="authed">
-                <Card className='card-login'>
+                <Card className={!activeStyle ? "card-login" : "card-login-animate"}>
                     <Box sx={{ marginBottom: 'auto' }}>
                         {Photo.logo}
-                        <SliderButton/>
+                        <SliderButton activeStyle={activeStyle}/>
                     </Box>
                     {!loginOrRegister ? (
-                            <Login className="authed" onSubmit={onSubmit} register={register} handleSubmit={handleSubmit} errors={errors} login={login} setLogin={setLogin} password={password} setPassword={setPassword} />
+                            <Login className="authed" onSubmit={onSubmit} register={register} handleSubmit={handleSubmit} errors={errors} login={login} setLogin={setLogin} password={password} setPassword={setPassword} activeStyle={activeStyle} />
                     ) : (
-                        <Register className="authed" loginOrRegister={loginOrRegister} />
+                        <Register className="authed" loginOrRegister={loginOrRegister} activeStyle={activeStyle} />
                     )
                     }
                 </Card>
             </Box>
+
         </div>
     );
 };

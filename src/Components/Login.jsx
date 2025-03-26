@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, FormControl, FormHelperText, OutlinedInput, Button } from '@mui/material';
 import { errorStyle } from '../hook/useStyle.js'
 
-const Login = ({ className, onSubmit, register, handleSubmit, errors, login, password, setLogin, setPassword }) => {
+const Login = ({ className, onSubmit, register, handleSubmit, errors, login, password, setLogin, setPassword, activeStyle }) => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -15,7 +15,7 @@ const Login = ({ className, onSubmit, register, handleSubmit, errors, login, pas
                             inputProps={{ style: { textAlign: 'center' } }}
                             size='small'
                             placeholder='Введите логин'
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             color='#91ff35'
                             sx={errorStyle(errors.login)}
                             value={login}
@@ -32,7 +32,7 @@ const Login = ({ className, onSubmit, register, handleSubmit, errors, login, pas
                             size='small'
                             sx={errorStyle(errors.password)}
                             placeholder='Введите пароль'
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             color='#91ff35'
                             {...register('password')}
                             value={password}
@@ -41,7 +41,7 @@ const Login = ({ className, onSubmit, register, handleSubmit, errors, login, pas
                         {errors.password && <span className='error'>{errors.password.message}</span>}
                     </FormControl>
 
-                    <Button type='submit' className="button registr">
+                    <Button type='submit' className={!activeStyle ? 'registr' : "registr-animation"}>
                         Войти
                     </Button>
 

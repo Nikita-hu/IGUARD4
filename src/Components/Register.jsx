@@ -7,13 +7,12 @@ import Man2SharpIcon from '@mui/icons-material/Man2Sharp';
 import Woman2SharpIcon from '@mui/icons-material/Woman2Sharp';
 import { FormLabel, FormControlLabel, Radio } from '@mui/material';
 import { useCreateMutation } from '../hook/useApiUsers.js'
-import useApi from '../hook/useApiUsers.js';
 import { validationSchema } from '../validation/ValidationUsers.js';
 import { setActiveSwitch, setAddUser, setSwitch } from '../redux/store.js'
 import { useDispatch } from 'react-redux';
 
 
-const Register = () => {
+const Register = ({ activeStyle }) => {
     const [checked, setChecked] = useState(false);
 
     const dispatch = useDispatch();
@@ -54,7 +53,7 @@ const Register = () => {
                             size='small'
                             placeholder='Enter name'
                             {...register('name')}
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             sx={errorStyle(errors.name)}
                         />
                         {errors.name && <span className='error'>{errors.name.message}</span>}
@@ -66,7 +65,7 @@ const Register = () => {
                             size='small'
                             placeholder='Enter email'
                             {...register('email')}
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             sx={errorStyle(errors.email)}
                         />
                         {errors.email && <span className='error'>{errors.email.message}</span>}
@@ -78,7 +77,7 @@ const Register = () => {
                             size='small'
                             placeholder='Enter login'
                             {...register('login')}
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             sx={errorStyle(errors.login)}
                         />
                         {errors.login && <span className='error'>{errors.login.message}</span>}
@@ -91,7 +90,7 @@ const Register = () => {
                             type="password"
                             placeholder='Enter password'
                             {...register('password')}
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             sx={errorStyle(errors.password)}
                         />
                         {errors.password && <span className='error'>{errors.password.message}</span>}
@@ -103,7 +102,7 @@ const Register = () => {
                             size='small'
                             placeholder='Enter dateOfBirth'
                             {...register('dateOfBirth')}
-                            className='enter-styles'
+                            className={!activeStyle ? 'enter-styles' : "enter-styles-animate"}
                             sx={errorStyle(errors.dateOfBirth)}
                         />
                         {errors.dateOfBirth && <span className='error'>{errors.dateOfBirth.message}</span>}
@@ -118,7 +117,7 @@ const Register = () => {
                                     value="true"
                                     checked={checked === 'true'}
                                     color="secondary"
-                                    className="radio"
+                                    className={!activeStyle ? 'radio' : "radio-animate"}
                                     onChange={(event) => setChecked(event.target.value)}
                                 />
                             }
@@ -131,16 +130,16 @@ const Register = () => {
                                     value="false"
                                     checked={checked === 'false'}
                                     color="secondary"
-                                    className="radio"
                                     onChange={(event) => setChecked(event.target.value)}
+                                    className={!activeStyle ? 'radio' : "radio-animate"}
                                 />
                             }
                             label={<Woman2SharpIcon className='men-women' />}
                         />
                         {errors.gender && <span className='error'>{errors.gender.message}</span>}
                     </FormControl>
-                    <Button type="submit" className='button registr' >Зарегистрироваться</Button>
-                   
+                    <Button type="submit" className={!activeStyle ? 'registr' : "registr-animation"}>Зарегистрироваться</Button>
+
 
                 </Box>
             </form>

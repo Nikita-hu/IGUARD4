@@ -1,0 +1,173 @@
+.authedButtonStyleDef {
+  flex: 1;
+  border-radius: 25px !important;
+  z-index: 1;
+  transition: background-color 0.3s;
+  font-size: 11px !important;
+}
+
+.no-active-authedButton {
+  @extend .authedButtonStyleDef;
+  color: #000 !important;
+  border: 1px solid green;
+  background-color: #91ff35 !important;
+}
+
+.yes-active-authedButton {
+  @extend .authedButtonStyleDef;
+  color: #fff !important;
+  border: 1px solid green;
+  background-color: #000;
+}
+
+.regStyledef {
+  margin-top: 10px !important;
+  border-radius: 40px !important;
+  transition: background-color 0.3s;
+  padding: 0px !important;
+  width: 200;
+  color: #000000 !important;
+}
+
+.registr {
+  @extend .regStyledef;
+  background-color: #767676 !important;
+
+  &:hover {
+    background-color: #000000 !important;
+    color: #91ff35 !important;
+
+  }
+}
+
+.radio {
+  margin-top: 0px !important;
+  padding: 0px !important;
+  font-size: 5px !important;
+  color: rgb(255, 255, 255) !important
+}
+
+.boxLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  place-items: center;
+  margin-bottom: auto;
+  width: 250px;
+  background-color: black !important;
+  border-radius: 20px !important;
+  padding: auto;
+}
+
+@keyframes animateCard {
+  0% {
+    box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+  }
+
+  25% {
+    box-shadow: 0 0 10px #ffea00, 0 0 20px#ffea00;
+  }
+
+  50% {
+    box-shadow: 0 0 10px #76ff03, 0 0 20px #76ff03;
+  }
+
+  75% {
+    box-shadow: 0 0 10px #ff9100, 0 0 20px #ff9100;
+  }
+
+  100% {
+    box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+  }
+}
+
+@keyframes animateSwitchAuthed {
+  0% {
+    background-color: #00e5ff;
+  }
+
+  25% {
+    background-color: #ffea00;
+  }
+
+  50% {
+    background-color: #76ff03;
+  }
+
+  75% {
+    background-color: #ff9100;
+  }
+
+  100% {
+    background-color: #00e5ff;
+  }
+}
+
+.no-active-authedButton-animation {
+  @extend .authedButtonStyleDef;
+  color: #000 !important;
+  border: 1px solid transparent;
+  overflow: hidden;
+  animation: animateSwitchAuthed 4s linear infinite;
+}
+
+.yes-active-authedButton-animation {
+  @extend .authedButtonStyleDef;
+  color: #fff !important;
+  border: 1px solid transparent;
+}
+
+.registr-animation {
+  @extend .regStyledef;
+  overflow: hidden;
+  animation: animateSwitchAuthed 4s linear infinite;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: #000000 !important;
+
+    color: #91ff35 !important;
+
+  }
+}
+
+.radio-animate {
+  @extend .radio;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+  border: 2px solid #00e5ff;
+  animation: animateCard 2s infinite;
+}
+
+.styles {
+  font-size: 13px !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.enter-styles {
+  @extend .styles;
+  border: 2px solid #91ff35 !important;
+}
+
+.enter-styles-animate {
+  @extend .styles;
+  border: 2px solid transparent;
+  overflow: hidden;
+  animation: animateCard 4s linear infinite;
+}
+
+.card-login {
+  @extend .boxLogin;
+  border: 2px solid #91ff35 !important;
+}
+
+.card-login-animate {
+  @extend .boxLogin;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  animation: animateCard 4s linear infinite;
+}

@@ -61,4 +61,4 @@ export const SliderUpDate = ({activeUpDate, handleClick}) => {
   );
 };
 
-// export default SliderUpDate;
+

@@ -1,8 +1,9 @@
 import { pink } from '@mui/material/colors';
-import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import logo from '../img/photo.jpg'
 import React  from 'react';
+import Switch from '@mui/material/Switch';
+
 
 export const getColor = (value) => {
     if (value < 50) {
@@ -52,3 +53,4 @@ export const getColorTask = (task, status) => {
         return '#00e5ff';
     }
 };
+

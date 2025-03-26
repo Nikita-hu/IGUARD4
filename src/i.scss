@@ -1,8 +1,9 @@
 .thebox {
-    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    .css-10d30g3-MuiPaper-root-MuiDialog-paper {
         max-width: 280px;
         margin: 0px;
-        border: 2px solid white;
+        border: 2px solid white!important;
+        border-radius: 10px;
     }
 
     .css-ypiqx9-MuiDialogContent-root {
@@ -50,21 +51,9 @@
     color: rgb(255, 255, 255)
 }
 
-.radio {
-    margin-top: 0px !important;
-    padding: 0px !important;
-    font-size: 5px !important;
-    color: rgb(255, 255, 255) !important
-}
-
 .styles {
     font-size: 13px !important;
     color: rgb(255, 255, 255) !important;
-}
-
-.enter-styles {
-    @extend .styles;
-    border: 2px solid #91ff35 !important;
 }
 
 
@@ -180,20 +169,7 @@
     }
 }
 
-.registr {
-    @extend .button;
-    border-radius: 40px !important;
-    margin-top: 10px !important;
-    width: 200;
-    color: #000000 !important;
 
-    &:hover {
-        background-color: #000000 !important;
-
-        color: #91ff35 !important;
-
-    }
-}
 
 .sale-dialog {
     .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
@@ -218,19 +194,21 @@
 
 .task-buttonh {
     .css-1uent87-MuiButtonBase-root-MuiButton-root {
-    border-radius: 10px!important;
-    color: #000000!important;
-    background-color: #767676!important;
-    width: 160px;
+        border-radius: 10px !important;
+        color: #000000 !important;
+        background-color: #767676 !important;
+        width: 160px;
     }
+
     &:hover {
-        .css-1uent87-MuiButtonBase-root-MuiButton-root  {
-            color: #91ff35!important;
+        .css-1uent87-MuiButtonBase-root-MuiButton-root {
+            color: #91ff35 !important;
             background-color: #000000 !important;
+        }
     }
-}
 
 }
+
 .title-word {
     color: rgb(255, 255, 255);
     text-align: center;
@@ -271,19 +249,4 @@
     background-color: black !important;
     border-radius: 20px !important;
     border: 2px solid #91ff35 !important;
-}
-
-.card-login {
-    @extend .box;
-
-    width: 250px;
-    // height: 250px;
-    // height: auto;
-    // max-height: 700px;
-    // min-height: 1px!important;
-    padding: auto;
-    background-color: black !important;
-    border-radius: 20px !important;
-    border: 2px solid #91ff35 !important;
-
 }
